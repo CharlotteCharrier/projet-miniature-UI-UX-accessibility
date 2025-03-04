@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
+import "./login.scss";
 
 function Login() {
   // isLogin tell if the page is the login page or the register page
