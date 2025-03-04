@@ -9,8 +9,7 @@ import { getNewestPosts, getTrendingPosts /*, getNewestPosts */ } from "../servi
 const TRENDING_FEED = true;
 
 function AppContent() {
-  // const { auth, login } = useAuth();
-  const { auth } = useAuth();
+  const { auth, login } = useAuth();
   const [posts, setPosts] = useState({ content: [] });
   const [currentFeed, setCurrentFeed] = useState(TRENDING_FEED);
 
@@ -18,13 +17,10 @@ function AppContent() {
     if (auth) {
       const feed = currentFeed ? getTrendingPosts(auth) : getNewestPosts(auth);
       feed.then(setPosts).catch((error) => console.error("Error fetching posts:", error));
+    } else {
+      login("charlotte", "test");
     }
-    //   else {
-    //     login("charlotte", "test");
-    //   }
-    // }, [auth, currentFeed, login]);
-  }, [auth, currentFeed]);
-
+  }, [auth, currentFeed, login]);
   const [postsMap, owners] = useMemo(() => {
     const ownersMap = new Map();
     const postsMap = new Map();
